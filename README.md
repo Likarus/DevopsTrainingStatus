@@ -11,6 +11,10 @@ Abraham Garcia | 51489 | 13/03/2020 | Siva| ARM Template | None |
 Abraham Garcia | 51489 | 17/03/2020 | Siva| PowerShell | 1.	Create Virtual Network using ARM Template and PowerShell 2.	Create Resource Group and VM using ARM Template 3.	Create Azure SQL DB via ARM Template 4.	Create 2 VMs and configure the load balancer using PowerShell 5.	Create Web App and configure the Application Gateway using PowerShell script | Completed
 Abraham Garcia | 51489 | 19/03/2020 | Giri| Azure DevOps Introduction | None | 
 Abraham Garcia | 51489 | 20/03/2020 | Giri| Azure DevOps Boards and Build Pipelines | None | 
-Abraham Garcia | 51489 | 23/03/2020 | Giri| Azure Devops Release Pipelines | None | 
+Abraham Garcia | 51489 | 23/03/2020 | Giri| Azure Devops Release Pipelines | None |
+Abraham Garcia | 51489 | 23/03/2020 | Sushant and Venkat| Shadowing day 1 | Study about Branching Strategies and how the Azure Kubernetes Service works and the benefits of using it  | Completed 
+Abraham Garcia | 51489 | 24/03/2020 | Giri| Azure Devops Release Pipelines Pt 2 | None | 
+Abraham Garcia | 51489 | 24/03/2020 | Giri| Sushant and Venkat | Shadowing day 2 | Build an Artifact and store it on the Azure Container Registry | Completed
+
 
 
