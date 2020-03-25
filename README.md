@@ -14,7 +14,7 @@ Abraham Garcia | 51489 | 20/03/2020 | Giri| Azure DevOps Boards and Build Pipeli
 Abraham Garcia | 51489 | 23/03/2020 | Giri| Azure Devops Release Pipelines | None |
 Abraham Garcia | 51489 | 23/03/2020 | Sushant and Venkat| Shadowing day 1 | Study about Branching Strategies and how the Azure Kubernetes Service works and the benefits of using it  | Completed 
 Abraham Garcia | 51489 | 24/03/2020 | Giri| Azure Devops Release Pipelines Pt 2 | None | 
-Abraham Garcia | 51489 | 24/03/2020 | Giri| Sushant and Venkat | Shadowing day 2 | Build an Artifact and store it on the Azure Container Registry | Completed
+Abraham Garcia | 51489 | 24/03/2020 | Sushant and Venkat | Shadowing day 2 | Build an Artifact and store it on the Azure Container Registry | Completed
 
 
 
