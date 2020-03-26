@@ -15,6 +15,7 @@ Abraham Garcia | 51489 | 23/03/2020 | Giri| Azure Devops Release Pipelines | Non
 Abraham Garcia | 51489 | 23/03/2020 | Sushant and Venkat| Shadowing day 1 | Study about Branching Strategies and how the Azure Kubernetes Service works and the benefits of using it  | Completed 
 Abraham Garcia | 51489 | 24/03/2020 | Giri| Azure Devops Release Pipelines Pt 2 | None | 
 Abraham Garcia | 51489 | 24/03/2020 | Sushant and Venkat | Shadowing day 2 | Build an Artifact and store it on the Azure Container Registry | Completed
+Abraham Garcia | 51489 | 25/03/2020 | Sushant and Venkat | Shadowing day 3 | Deploy a Docker Container from the Azure Container Registry to a Kubernetes Cluster, Then Expose that Web App with NGINX or Gateway | in Progress
 
 
 
