@@ -2,6 +2,13 @@
 
 https://dev.azure.com/51489/samplePythonProject
 
+## Branching Strategies with Azure App Service
+
+ I Created a simple pipeline to deploy a sample python app from Azure Devops to Azure App Service to test Branching Strategies
+ The link for the Live app is this: http://samplepythonproject.azurewebsites.net/ 
+ 
+the project where you can see the files and the branching history is this: https://dev.azure.com/51489/_git/samplePythonProject
+
 
 ## Azure Container Registry
 
