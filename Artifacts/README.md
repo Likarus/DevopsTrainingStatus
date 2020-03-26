@@ -1,6 +1,7 @@
-# Azure Devops project Link where we implemented branching strategies and deployed a Python sample app to an Azure app service
+# Azure Devops project 
 
 https://dev.azure.com/51489/samplePythonProject
+
 
 ## Azure Container Registry
 
