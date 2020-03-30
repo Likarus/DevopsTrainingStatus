@@ -7,7 +7,6 @@ Courses & Documentation:
 
 2.- Ansible Quick Start - https://linuxacademy.com/cp/modules/view/id/288.
 
-
 Please Use the below template
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status 
 ---- | ----- | ---- | ------------ |---------------- |-------------- |------------------- 
@@ -29,3 +28,11 @@ Juan Antonio Rivera | 51490 | March 24 | Giridharaprasadh K| Provision a Resourc
 Juan Antonio Rivera | 51490 | March 26 | Sathish Kumar| Overview of Ansible | Task | Completed
 Juan Antonio Rivera | 51490 | March 27 | Sathish Kumar| Brief view of Ansible Playbook | Task | Completed
 Juan Antonio Rivera | 51490 | March 30 | Sathish Kumar| Dynamic Inventory | Task | Completed
+
+# Devops Shadowing
+
+Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status 
+---- | ----- | ---- | ------------ |---------------- |-------------- |------------------- 
+Juan Antonio Rivera | 51490 | March 24 | Sushant Kumar - Venkat| Overview of Azure | Task | Completed
+Juan Antonio Rivera | 51490 | March 25 | Sushant Kumar - Venkat| Overview of Azure | Task | Completed
+Juan Antonio Rivera | 51490 | March 27 | Sushant Kumar - Venkat| Overview of Azure | Task | Completed
