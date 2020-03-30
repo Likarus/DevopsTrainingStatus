@@ -32,10 +32,20 @@ Quetzalcoatl Garcia | 51488 | 03/23/20 | Giridharaprasadh K | Release Pipeline  
 Quetzalcoatl Garcia | 51488 | 03/24/20 | Giridharaprasadh K | Provision a Resource ARM Template to Azure via Azure DevOps | | completed | 422864
 Quetzalcoatl Garcia | 51488 | 03/25/20 | Giridharaprasadh K |no session today | | working with Pipeline | 422864
 
-03/26
-deployed test Pipeline (Flatirs app) and artifact <br />
-Deployed azure Web App windos for use on devops release <br />
-deployed test release Flatris unsing Azure Web App <br />
+DevOps
+this exercise has a objective work with  branch strategies, 
+after modification in code commit create new brnach and pull request
+after pull request is validated and apprived, the new barnch is merged in master branc
+	https://dev.azure.com/51488/DevOps%20Academy%20Hexaware%20-%20Branch%20strategies
+	
+	
+Build and deploy to Azure Kubernetes Service	
+This Exercise has an objectove to deploy  Azure K8S service and pull to azure
+using brnach strategies, after approve commit, pipeline start and deploy new code
+service os running on http://52.152.203.121:8080/
+
+pipeline:
+https://dev.azure.com/51488/Build%20and%20deploy%20to%20Azure%20Kubernetes%20Service
 
 
 Ansible
