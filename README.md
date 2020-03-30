@@ -19,3 +19,6 @@ Juan Antonio Rivera | 51490 | March 19 | Giridharaprasadh K| Managing the Reposi
 Juan Antonio Rivera | 51490 | March 20 | Giridharaprasadh K| Build & Build Artifacts | Task | Completed 
 Juan Antonio Rivera | 51490 | March 23 | Giridharaprasadh K| Release Pipeline Variable Groups Task Groups | Task | Completed 
 Juan Antonio Rivera | 51490 | March 24 | Giridharaprasadh K| Provision a Resource ARM Template to Azure via Azure DevOps | Task | Completed 
+Juan Antonio Rivera | 51490 | March 26 | Sathish Kumar| Overview of Ansible | Task | Completed
+Juan Antonio Rivera | 51490 | March 27 | Sathish Kumar| Brief view of Ansible Playbook | Task | Completed
+Juan Antonio Rivera | 51490 | March 30 | Sathish Kumar| Dynamic Inventory | Task | Completed
