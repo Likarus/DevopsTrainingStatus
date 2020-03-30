@@ -2,8 +2,11 @@
 Weekly Reports for Hexaware´s Devops Training Feb 2020 Batch.
 
 Courses & Documentation:
-1.- Microsoft Azure Administrator - Exam AZ-103 - https://linuxacademy.com/cp/modules/view/id/352
-2.- Ansible Quick Start - https://linuxacademy.com/cp/modules/view/id/288
+
+1.- Microsoft Azure Administrator - Exam AZ-103 - https://linuxacademy.com/cp/modules/view/id/352.
+
+2.- Ansible Quick Start - https://linuxacademy.com/cp/modules/view/id/288.
+
 
 Please Use the below template
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status 
