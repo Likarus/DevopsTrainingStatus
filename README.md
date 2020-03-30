@@ -1,4 +1,7 @@
 # DevopsTrainingStatus
+
+## Please Refer to the Artifacts Folder to view sample projects done for Testing
+
 Weekly Reports for Hexaware´s Devops Training Feb 2020 Batch
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status 
 ---- | ----- | ---- | ------------ |---------------- |-------------- |------------------- 
