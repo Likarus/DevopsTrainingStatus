@@ -32,26 +32,21 @@ Quetzalcoatl Garcia | 51488 | 03/20/20 | Giridharaprasadh K | - Build & Build Ar
 Quetzalcoatl Garcia | 51488 | 03/23/20 | Giridharaprasadh K | - Release Pipeline Variable Groups Task Groups | | comleted |
 Quetzalcoatl Garcia | 51488 | 03/24/20 | Giridharaprasadh K | - Provision a Resource ARM Template to Azure via Azure DevOps | | completed
 
-DevOps
-this exercise has a objective work with  branch strategies, 
-after modification in code commit create new brnach and pull request
-after pull request is validated and apprived, the new barnch is merged in master branc
-	https://dev.azure.com/51488/DevOps%20Academy%20Hexaware%20-%20Branch%20strategies
-	
-	
-Build and deploy to Azure Kubernetes Service	
-This Exercise has an objectove to deploy  Azure K8S service and pull to azure
-using brnach strategies, after approve commit, pipeline start and deploy new code
-service os running on http://52.152.203.121:8080/
 
-pipeline:
-https://dev.azure.com/51488/Build%20and%20deploy%20to%20Azure%20Kubernetes%20Service
-
-
-Ansible
+## Ansible ##
+[Udemy- Ansible to the absolute beginner in DevOps](https://hexaware.udemy.com/course/learn-ansible/learn/lecture/16690970#overview/) <br />
+[Udemy Ansible- Advance 'Hand On  ](https://hexaware.udemy.com/course/learn-ansible-advanced/learn/)<br />
+[Linux Academy- Ansible laboratory](https://app.linuxacademy.com/hands-on-labs/a0936654-61c3-4d94-a58a-84b8c2c5163b?redirect_uri=https:%2F%2Flinuxacademy.com%2Fcp%2Fmodules%2Fview%2Fid%2F372)
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
 -----|-------|------|--------------|-----------------|---------------|---------------------|
-Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | Overview of Ansible |  |completed |
+Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Overview of Ansible | no task assigned  | completed |
+Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Installation of the Ansible<br />
+-Ansible Configuration Files<br /> -Adhoc Commands | no task assigned | completed |
+Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Brief view of Ansible Playbook<br />
+-Writing a Ansible Playbook<br /> -Execution modes of the Ansible Playbook | no task assigned  | completed |
+Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Static & Dynamic Inventories<br /> -Variable<br /> -Handlers<br />
+| no task assigned   | completed |
+Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Ansible Roles<br /> -Ansible Tower   |no started yet 
 
 
 
