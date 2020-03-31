@@ -1,26 +1,25 @@
-# DevopsTrainingStatus
-Weekly Reports for Hexaware´s Devops Training Feb 2020 Batch.
+# DevopsTrainingStatus #
+#Weekly Reports for Hexaware´s Devops Training Feb 2020 Batch. #
 
-Azure - https://eylearning.udemy.com/course/70533-azure/
+## AZURE ##
+Azure Self Learning bases on webcourse --> https://eylearning.udemy.com/course/70533-azure/ <br />
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
 -----|-------|------|--------------|-----------------|---------------|---------------------|
-Quetzalcoatl Garcia | 51488 | 03/02/20 | Sivakumar C| Azure Introduction, Region, Resource Group, Azure Subscription & IAM Roles |  |completed |
-Quetzalcoatl Garcia | 51488 | 03/03/20 | Sivakumar C| Azure Virtual Network, VPN Connectivity  | Lab Hands On - Create Virtual Network in Portal, ARM Template & Powershell, Lab Hands On - Establish a Vnet 2 Vnet Connectivity, Lab Hands On - Configure VNet Peering between 2 VNets of Different region with Gateway Transit |completed |
-Quetzalcoatl Garcia | 51488 | 03/04/20 | Sivakumar C| NSG, Loadbalancer, Traffic Manager   |  |completed |
-Quetzalcoatl Garcia | 51488 | 03/05/20 | Sivakumar C| Azure Storage Account, BLOB, Files   |  |completed |
-Quetzalcoatl Garcia | 51488 | 03/06/20 | Sivakumar C| Storage Replication and Security  | Lab Hands On - Create Storage Account, Upload files to Block Blob & Access the blob URL in browser, Lab Hands On - Create SAS Key for Storage account and Access it via Storage Explorer, Lab Hands On - Create Fileshare, Upload files & mount fileshare to Linux VM. |completed |
-Quetzalcoatl Garcia | 51488 | 03/09/20 | Sivakumar C| Azure Virtual Machine, Availability Zone & Set, Images, VM Sizes, VM Disks, Tags | Lab Hands On - Create Linux Virtual Machine and Add a existing Data Disk, Lab Hands On - Create Windows Virtual Machine, Enable the Disk Encryption and Apply Tags to VM, Lab Hands On - Create Virtual Machine with Availibility Set and Apply Resource Lock, Lab Hands On - Create VM Scale Set and configure to perform a AutoScaling with Network Usage   |completed |
-Quetzalcoatl Garcia | 51488 | 03/10/20 | Sivakumar C| Azure WebApp, App Service Plan, Deployment Slot | Lab Hands On - Create a Webapp and deploy a sample application code in Deployment slot and Access the both the URLs. |completed |
-Quetzalcoatl Garcia | 51488 | 03/11/20 | Sivakumar C| Azure SQL, Single DB & Elastic Pool, Failover Group | Lab Hands On - Create SQL DB PaaS, DTU Size & Configure Geo Replication, Lab Hands On - Create SQL DB PaaS & vcore size with Elastic Pool  |completed |
-Quetzalcoatl Garcia | 51488 | 03/12/20 | Sivakumar C| ARM Template | Lab Hands On - Create Resource Group, VM Via ARM Templates, b Hands On - Create SQL DB PaaS via ARM Templates |completed 
-Quetzalcoatl Garcia | 51488 | 03/13/20 | Sivakumar C| Azure PowerShell |Lab Hands On - Create 2 VMs and configure it to Load Balancer Via PowerScript, Lab Hands On - Create WebApp and Configure it to Application Gateway Via Powershell Script.  |completed |
+Quetzalcoatl Garcia | 51488 | 03/02/20 | Sivakumar C| -Azure Introduction Region<br /> -Resource Group<br /> -Azure Subscription<br />  -IAM Roles <br /> | Personal laboratory <br />   [Manage_Azure_AD_Identities](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_01-Manage_Azure_AD_Identities.html).<br /> [Manage_Subscriptions_and_RBAC](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_02a_Manage_Subscriptions_and_RBAC.html).<br /> [Manage_Governance_via_Azure_Policy](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_02b-Manage_Governance_via_Azure_Policy.html). |completed |
+Quetzalcoatl Garcia | 51488 | 03/03/20 | Sivakumar C| -Azure Virtual Network<br /> -VPN Connectivity  | Lab Hands On<br /> Create Virtual Network in Portal<br /> ARM Template & Powershell<br />  Establish a Vnet 2 Vnet Connectivity<br />  Configure VNet Peering between 2 VNets of Different region with Gateway Transit |completed |
+Quetzalcoatl Garcia | 51488 | 03/04/20 | Sivakumar C| -NSG<br /> -Loadbalancer<br /> -Traffic Manager<br />| Personal laboratory<br /> [Implementing Network Traffic Management](https://microsoftlearning.github.io/AZ-104-MicrosoftAzuredministrator/Instructions/Labs/LAB_06-Implement_Network_Traffic_Management.html) |completed |
+Quetzalcoatl Garcia | 51488 | 03/05/20 | Sivakumar C| -Azure Storage Account<br /> -BLOB<br /> -Files   | Personal laboratory<br />  [Manage Azure Stoage](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_07-Manage_Azure_Storage.html)  |completed |
+Quetzalcoatl Garcia | 51488 | 03/06/20 | Sivakumar C| Storage Replication and Security  | Lab Hands On<br /> Create Storage Account, Upload files to Block Blob and Access the blob URL in browser<br />  -Create SAS Key for Storage account and Access it via Storage Explorer<br />  Create Fileshare<br /> Upload files & mount fileshare to Linux VM. | completed |
+Quetzalcoatl Garcia | 51488 | 03/09/20 | Sivakumar C| -Azure Virtual Machine<br /> -Availability Zone & Set<br /> -Images<br /> -VM Sizes<br /> -VM Disks<br /> -Tags | Lab Hands On<br /> Create Linux Virtual Machine and Add a existing Data Disk<br /> Create Windows Virtual Machine<br /> Enable the Disk Encryption and Apply Tags to VM<br />  Create Virtual Machine with Availibility Set and Apply Resource Lock<br /> Create VM Scale Set and configure to perform a AutoScaling with Network Usage   |completed |
+Quetzalcoatl Garcia | 51488 | 03/10/20 | Sivakumar C| -Azure WebApp<br /> -App Service Plan<br /> -Deployment Slot | Lab Hands On<br /> -Create a Webapp and deploy a sample application code in Deployment slot and Access the both the URLs. |completed |
+Quetzalcoatl Garcia | 51488 | 03/11/20 | Sivakumar C| -Azure SQL<br /> -Single DB & Elastic Pool<br /> -Failover Group | Lab Hands On<br /> -Create SQL DB PaaS<br /> DTU Size & Configure Geo Replication<br /> Create SQL DB PaaS & vcore size with Elastic Pool  |completed |
+Quetzalcoatl Garcia | 51488 | 03/12/20 | Sivakumar C| -ARM Template | Lab Hands On<br /> Create Resource Group<br /> VM Via ARM Templates<br /> Create SQL DB PaaS via ARM Templates |completed 
+Quetzalcoatl Garcia | 51488 | 03/13/20 | Sivakumar C| -Azure PowerShell |Lab Hands On<br /> Create 2 VMs and configure it to Load Balancer Via PowerScript<br /> Create WebApp and Configure it to Application Gateway Via Powershell Script.  |completed |
 
-Completed microsoft azure laboratioes az-103 and az-104 <br />
-https://microsoftlearning.github.io/AZ-103-MicrosoftAzureAdministrator/ <br />
-https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/ <br />
 
-  
-Azure-DevOps <br />
+*  Completed Personal laboratories from Microsoft [AZ-103](https://microsoftlearning.github.io/AZ-103-MicrosoftAzureAdministrator/). & [AZ-104](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/). <br />
+
+## Azure-DevOp ## 
 https://www.youtube.com/watch?v=MOZMw5_fBFA <br />
 https://hexaware.udemy.com/course/azure-devops-for-beginners/learn/lecture/16451864#questions <br />
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
