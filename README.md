@@ -36,17 +36,17 @@ Quetzalcoatl Garcia | 51488 | 03/24/20 | Giridharaprasadh K | - Provision a Reso
 ## Ansible ##
 [Udemy- Ansible to the absolute beginner in DevOps](https://hexaware.udemy.com/course/learn-ansible/learn/lecture/16690970#overview/) <br />
 [Udemy Ansible- Advance 'Hand On  ](https://hexaware.udemy.com/course/learn-ansible-advanced/learn/)<br />
-[Linux Academy- Ansible laboratory](https://app.linuxacademy.com/hands-on-labs/a0936654-61c3-4d94-a58a-84b8c2c5163b?redirect_uri=https:%2F%2Flinuxacademy.com%2Fcp%2Fmodules%2Fview%2Fid%2F372)
+[Linux Academy- Ansible laboratory](https://app.linuxacademy.com/hands-on-labs/a0936654-61c3-4d94-a58a-84b8c2c5163b?redirect_uri=https:%2F%2Flinuxacademy.com%2Fcp%2Fmodules%2Fview%2Fid%2F372)<br />
+
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
 -----|-------|------|--------------|-----------------|---------------|---------------------|
 Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Overview of Ansible | no task assigned  | completed |
-Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Installation of the Ansible<br />
--Ansible Configuration Files<br /> -Adhoc Commands | no task assigned | completed |
-Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Brief view of Ansible Playbook<br />
--Writing a Ansible Playbook<br /> -Execution modes of the Ansible Playbook | no task assigned  | completed |
-Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Static & Dynamic Inventories<br /> -Variable<br /> -Handlers<br />
-| no task assigned   | completed |
+Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Installation of the Ansible<br /> -Ansible Configuration Files<br /> -Adhoc Commands | no task assigned | completed |
+Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Brief view of Ansible Playbook<br /> -Writing a Ansible Playbook<br /> -Execution modes of the Ansible Playbook | no task assigned  | completed |
+Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Static & Dynamic Inventories<br /> -Variable<br /> -Handlers<br /> | no task assigned   | completed |
 Quetzalcoatl Garcia | 51488 | 03/18/20 | Sathish Kumar | -Ansible Roles<br /> -Ansible Tower   |no started yet 
 
-
+#### Note ####
+ working on Ansible exercise: deploy Azure services from external services
+  -- {here must be repo}
 
