@@ -28,6 +28,7 @@ Juan Antonio Rivera | 51490 | March 24 | Giridharaprasadh K| Provision a Resourc
 Juan Antonio Rivera | 51490 | March 26 | Sathish Kumar| Overview of Ansible | Task | Completed
 Juan Antonio Rivera | 51490 | March 27 | Sathish Kumar| Brief view of Ansible Playbook | Task | Completed
 Juan Antonio Rivera | 51490 | March 30 | Sathish Kumar| Dynamic Inventory | Task | Completed
+Juan Antonio Rivera | 51490 | April 1 | Sathish Kumar| Ansible Roles-Tower | Task | Completed
 
 # Devops Shadowing
 
