@@ -1,0 +1,105 @@
+Create Resource Group and Storage account 
+
+file: CreateStorageAccount.yml
+quetza@ubuntu:~/ansible$ ansible-playbook CreateStorageAccount.yml
+ [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+
+PLAY [localhost] *******************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Create a resource group] *****************************************************************************************************************************************
+changed: [localhost]
+
+TASK [create an account] ***********************************************************************************************************************************************
+changed: [localhost]
+
+PLAY RECAP *************************************************************************************************************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0
+
+
+-------------------
+Validation
+
+PS /home/quetzalcoatl> az storage account list -g NewstorageAccountRG
+[
+  {
+    "accessTier": null,
+    "azureFilesIdentityBasedAuthentication": null,
+    "blobRestoreStatus": null,
+    "creationTime": "2020-04-01T00:21:14.266239+00:00",
+    "customDomain": null,
+    "enableHttpsTrafficOnly": false,
+    "encryption": {
+      "keySource": "Microsoft.Storage",
+      "keyVaultProperties": null,
+      "services": {
+        "blob": {
+          "enabled": true,
+          "keyType": "Account",
+          "lastEnabledTime": "2020-04-01T00:21:14.328737+00:00"
+        },
+        "file": {
+          "enabled": true,
+          "keyType": "Account",
+          "lastEnabledTime": "2020-04-01T00:21:14.328737+00:00"
+        },
+        "queue": null,
+        "table": null
+      }
+    },
+    "failoverInProgress": null,
+    "geoReplicationStats": null,
+    "id": "/subscriptions/18cf3d20-a379-4c53-9f11-861dac5c9b88/resourceGroups/NewstorageAccountRG/providers/Microsoft.Storage/storageAccounts/newstorgeaccount1",
+    "identity": null,
+    "isHnsEnabled": null,
+    "kind": "Storage",
+    "largeFileSharesState": null,
+    "lastGeoFailoverTime": null,
+    "location": "eastus",
+    "name": "newstorgeaccount1",
+    "networkRuleSet": {
+      "bypass": "AzureServices",
+      "defaultAction": "Allow",
+      "ipRules": [],
+      "virtualNetworkRules": []
+    },
+    "primaryEndpoints": {
+      "blob": "https://newstorgeaccount1.blob.core.windows.net/",
+      "dfs": null,
+      "file": "https://newstorgeaccount1.file.core.windows.net/",
+      "internetEndpoints": null,
+      "microsoftEndpoints": null,
+      "queue": "https://newstorgeaccount1.queue.core.windows.net/",
+      "table": "https://newstorgeaccount1.table.core.windows.net/",
+      "web": null
+    },
+    "primaryLocation": "eastus",
+    "privateEndpointConnections": [],
+    "provisioningState": "Succeeded",
+    "resourceGroup": "NewstorageAccountRG",
+    "routingPreference": null,
+    "secondaryEndpoints": {
+      "blob": "https://newstorgeaccount1-secondary.blob.core.windows.net/",
+      "dfs": null,
+      "file": null,
+      "internetEndpoints": null,
+      "microsoftEndpoints": null,
+      "queue": "https://newstorgeaccount1-secondary.queue.core.windows.net/",
+      "table": "https://newstorgeaccount1-secondary.table.core.windows.net/",
+      "web": null
+    },
+    "secondaryLocation": "westus",
+    "sku": {
+      "name": "Standard_RAGRS",
+      "tier": "Standard"
+    },
+    "statusOfPrimary": "available",
+    "statusOfSecondary": "available",
+    "tags": {},
+    "type": "Microsoft.Storage/storageAccounts"
+  }
+]
+PS /home/quetzalcoatl>

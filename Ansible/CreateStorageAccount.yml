@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Create a resource group
+      azure_rm_resourcegroup:
+        name: NewstorageAccountRG
+        location: eastus
+        tags:
+           testing: testing
+           delete: never
+
+    - name: create an account
+      azure_rm_storageaccount:
+         resource_group: NewstorageAccountRG 
+         name: newstorgeaccount1
+         type: Standard_RAGRS
+         tags:
