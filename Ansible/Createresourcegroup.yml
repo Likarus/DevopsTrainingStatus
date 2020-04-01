@@ -1,0 +1,12 @@
+#Simple playbook to create a resource group in Azure using the bash console.
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Create resource group
+      azure_rm_resourcegroup:
+        name: ansible-resorce
+        location: eastus
+      register: rg
+    - debug:
+        var: rg
