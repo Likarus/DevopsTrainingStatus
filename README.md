@@ -50,4 +50,15 @@ Quetzalcoatl Garcia | 51488 | 04/01/20 | Sathish Kumar | -Ansible Roles<br /> -A
 ### Ansible task ###
 Ansible deplopyment for azure services using virtual machine on latop, 
  was configured azure princpal, roles  and laptop virtual machine environment  - Completed 
+ 
+ 
+## Docker ##
+[Udemy Docker for the Absolute Beginner -Hands On-DevOps](https://hexaware.udemy.com/course/learn-docker/learn/lecture/7838182?learning_path_id=166928#overview)<br />
+[Linux Acadmey Docker Certified Associate (DCA)](https://linuxacademy.com/cp/modules/view/id/347?redirect_uri=https://app.linuxacademy.com/search?query=Docker)<br />
+Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
+-----|-------|------|--------------|-----------------|---------------|---------------------|
+Quetzalcoatl Garcia | 51488 | 04/02/20 | Leoni Suganya| -Docker Fundamentals>br/> -Components and Installation | no task assigned  | completed |
+Quetzalcoatl Garcia | 51488 | 04/03/20  | Leoni Suganya| -Building Docker Images |   |  |
+Quetzalcoatl Garcia | 51488 | 04/07/20  | Leoni Suganya| -Working with Docker Containers |   |  |
+Quetzalcoatl Garcia | 51488 | 04/07/20  | Leoni Suganya| -Docker registry and Troubleshooting |   |  |
 
