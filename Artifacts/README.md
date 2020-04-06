@@ -29,4 +29,5 @@ Pipeline Definition: https://dev.azure.com/51489/samplePythonProject/_apps/hub/m
 Execution Log: https://dev.azure.com/51489/samplePythonProject/_build/results?buildId=9&view=logs&j=3dc8fd7e-4368-5a92-293e-d53cefc8c4b3
 ```
 
-An Azure Kubernetes Service implementation with the same web app is pending and will work on that tomorrow
+## An Azure Kubernetes Service implementation with NGINX Ingress Manifest Configuration
+https://dev.azure.com/51489/Azure%20Kubernetes%20Pipeline%20Sample%20Project
