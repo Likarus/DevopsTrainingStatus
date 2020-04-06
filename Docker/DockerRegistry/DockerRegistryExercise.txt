@@ -1,0 +1,212 @@
+DockerRegistryExercise
+
+
+Excersice to set a Docekr Registry on 1 server and accessing to registry from other
+
+Registri server name: ip-10-0-1-101
+Cliente server name : ip-10-0-1-102
+
+########################################
+Registry server
+Set up the private registry.  
+########################################
+
+
+Lets  create a authentification file
+
+
+######
+1. - Create Authentification file
+name: docker
+password: d0ck3rrU73z
+
+cloud_user@ip-10-0-1-101:~$ mkdir -p ~/registry/auth
+cloud_user@ip-10-0-1-101:~$ docker run --entrypoint htpasswd \
+>   registry:2 -Bbn docker d0ck3rrU73z > ~/registry/auth/htpasswd
+Unable to find image 'registry:2' locally
+2: Pulling from library/registry
+486039affc0a: Pulling fs layer
+ba51a3b098e6: Pulling fs layer
+8bb4c43d6c8e: Pulling fs layer
+6f5f453e5f2d: Pulling fs layer
+42bc10b72f42: Pulling fs layer
+6f5f453e5f2d: Waiting
+42bc10b72f42: Waiting
+ba51a3b098e6: Verifying Checksum
+ba51a3b098e6: Download complete
+486039affc0a: Verifying Checksum
+486039affc0a: Download complete
+8bb4c43d6c8e: Verifying Checksum
+8bb4c43d6c8e: Download complete
+6f5f453e5f2d: Verifying Checksum
+6f5f453e5f2d: Download complete
+42bc10b72f42: Verifying Checksum
+42bc10b72f42: Download complete
+486039affc0a: Pull complete
+ba51a3b098e6: Pull complete
+8bb4c43d6c8e: Pull complete
+6f5f453e5f2d: Pull complete
+42bc10b72f42: Pull complete
+Digest: sha256:7d081088e4bfd632a88e3f3bcd9e007ef44a796fddfe3261407a3f9f04abe1e7
+Status: Downloaded newer image for registry:2
+
+######
+2. Create a self-signed certificate for the registry
+Important: can leave default inforamtion, FQDN must be populated..
+
+cloud_user@ip-10-0-1-101:~$ mkdir -p ~/registry/certs
+cloud_user@ip-10-0-1-101:~$ openssl req \
+>   -newkey rsa:4096 -nodes -sha256 -keyout ~/registry/certs/domain.key \
+>   -x509 -days 365 -out ~/registry/certs/domain.crt
+Can't load /home/cloud_user/.rnd into RNG
+140075692081600:error:2406F079:random number generator:RAND_load_file:Cannot open file:../crypto/rand/randfile.c:88:Filename=/home/cloud_user/.rnd
+Generating a RSA private key
+.....................................................................++++
+.........++++
+writing new private key to '/home/cloud_user/registry/certs/domain.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:
+State or Province Name (full name) [Some-State]:
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:ip-10-0-1-101    <=============== Dont forget type 
+Email Address []:
+
+######
+3. Create a container to run the registry.
+
+cloud_user@ip-10-0-1-101:~$ docker run -d -p 443:443 --restart=always --name registry \
+>   -v /home/cloud_user/registry/certs:/certs \
+>   -v /home/cloud_user/registry/auth:/auth \
+>   -e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+>   -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \
+>   -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \
+>   -e REGISTRY_AUTH=htpasswd \
+>   -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+>   -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+>   registry:2
+8ec75b59cf3ca2ed8b072dcb7061f3fd2567fb9437b84bd593f64e8d741272f6
+
+######
+4. test container, must not be error 
+
+cloud_user@ip-10-0-1-101:~$ curl -k https://localhost:443
+cloud_user@ip-10-0-1-101:~$ 
+
+###########################################################
+Client server, Testing Registry
+Test the registry from the Docker workstation server. 
+############################################################
+
+
+cloud_user@ip-10-0-1-102:~$ echo $HOSTNAME
+ip-10-0-1-102
+Server 102
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+######
+1. Create certificated directory and copy from master server certificates
+cloud_user@ip-10-0-1-102:~$ sudo mkdir -p /etc/docker/certs.d/ip-10-0-1-101:443
+
+cloud_user@ip-10-0-1-102:~$ sudo scp cloud_user@ip-10-0-1-101:/home/cloud_user/registry/certs/domain.crt /etc/docker/certs.d/ip-10-0-1-101:443
+The authenticity of host 'ip-10-0-1-101 (10.0.1.101)' can't be established.
+ECDSA key fingerprint is SHA256:NpH+y1C4XdocoYsnxmTbuO44Er0WRilikTIp7JYKGFA.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ip-10-0-1-101,10.0.1.101' (ECDSA) to the list of known hosts.
+Password:
+domain.crt                                                                                                                           100% 2004     2.7MB/s   00:00
+
+######
+2. Log in to the private registry from the client. 
+cloud_user@ip-10-0-1-102:~$ docker login ip-10-0-1-101:443
+Username: docker
+Password:
+WARNING! Your password will be stored unencrypted in /home/cloud_user/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+
+######
+3. Test the registry by pushing an image to it
+
+cloud_user@ip-10-0-1-102:~$ docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+5bed26d33875: Pull complete
+f11b29a9c730: Pull complete
+930bda195c84: Pull complete
+78bf9a5ad49e: Pull complete
+Digest: sha256:bec5a2727be7fff3d308193cfde3491f8fba1a2ba392b7546b43a051853a341d
+Status: Downloaded newer image for ubuntu:latest
+cloud_user@ip-10-0-1-102:~$ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              4e5021d210f6        2 weeks ago         64.2MB
+
+cloud_user@ip-10-0-1-102:~$ docker tag ubuntu ip-10-0-1-101:443/test-image:1
+
+cloud_user@ip-10-0-1-102:~$ docker image ls
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+ubuntu                         latest              4e5021d210f6        2 weeks ago         64.2MB
+ip-10-0-1-101:443/test-image   1                   4e5021d210f6        2 weeks ago         64.2MB
+
+
+######
+4. test registry pulling image, removing local and pulling from registry
+cloud_user@ip-10-0-1-102:~$ docker push ip-10-0-1-101:443/test-image:1
+The push refers to repository [ip-10-0-1-101:443/test-image]
+16542a8fc3be: Pushed
+6597da2e2e52: Pushed
+977183d4e999: Pushed
+c8be1b8f4d60: Pushed
+1: digest: sha256:e5dd9dbb37df5b731a6688fa49f4003359f6f126958c9c928f937bec69836320 size: 1152
+
+cloud_user@ip-10-0-1-102:~$ docker image rm ubuntu
+Untagged: ubuntu:latest
+Untagged: ubuntu@sha256:bec5a2727be7fff3d308193cfde3491f8fba1a2ba392b7546b43a051853a341d
+
+cloud_user@ip-10-0-1-102:~$ docker  image ls
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+ip-10-0-1-101:443/test-image   1                   4e5021d210f6        2 weeks ago         64.2MB
+
+cloud_user@ip-10-0-1-102:~$ docker image rm ip-10-0-1-101:443/test-image
+Error: No such image: ip-10-0-1-101:443/test-image
+cloud_user@ip-10-0-1-102:~$ docker image rm ip-10-0-1-101:443/test-image:1
+Untagged: ip-10-0-1-101:443/test-image:1
+Untagged: ip-10-0-1-101:443/test-image@sha256:e5dd9dbb37df5b731a6688fa49f4003359f6f126958c9c928f937bec69836320
+Deleted: sha256:4e5021d210f65ebe915670c7089120120bc0a303b90208592851708c1b8c04bd
+Deleted: sha256:1d9112746e9d86157c23e426ce87cc2d7bced0ba2ec8ddbdfbcc3093e0769472
+Deleted: sha256:efcf4a93c18b5d01aa8e10a2e3b7e2b2eef0378336456d8653e2d123d6232c1e
+Deleted: sha256:1e1aa31289fdca521c403edd6b37317bf0a349a941c7f19b6d9d311f59347502
+Deleted: sha256:c8be1b8f4d60d99c281fc2db75e0f56df42a83ad2f0b091621ce19357e19d853
+
+### no images on workstation now
+cloud_user@ip-10-0-1-102:~$ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
+
+###### Pulling image from registry
+cloud_user@ip-10-0-1-102:~$ docker image pull ip-10-0-1-101:443/test-image:1
+1: Pulling from test-image
+5bed26d33875: Pull complete
+f11b29a9c730: Pull complete
+930bda195c84: Pull complete
+78bf9a5ad49e: Pull complete
+Digest: sha256:e5dd9dbb37df5b731a6688fa49f4003359f6f126958c9c928f937bec69836320
+Status: Downloaded newer image for ip-10-0-1-101:443/test-image:1
+
+##### Sucessfull pulled 
+cloud_user@ip-10-0-1-102:~$ docker image ls
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+ip-10-0-1-101:443/test-image   1                   4e5021d210f6        2 weeks ago         64.2MB
+cloud_user@ip-10-0-1-102:~$ packet_write_wait: Connection to 52.90.62.53 port 22: Broken pipe
