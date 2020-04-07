@@ -1,0 +1,64 @@
+
+
+Create a volumne 
+ docker volume create test-data
+ 
+Create a container
+docker run --name counter -d \
+ --mount type=volume,source=test-data,destination=/var/log/test \
+ busybox \
+ sh -c 'i=0; while true; do echo "$i: $(date)" >> /var/log/test/1.log; i=$((i+1)); sleep 1; done'
+ 
+Validate 
+docker exec counter cat /var/log/test/1.log
+
+17041: Tue Apr  7 17:13:49 UTC 2020
+17042: Tue Apr  7 17:13:49 UTC 2020
+17043: Tue Apr  7 17:13:49 UTC 2020
+17044: Tue Apr  7 17:13:49 UTC 2020
+17045: Tue Apr  7 17:13:49 UTC 2020
+17046: Tue Apr  7 17:13:49 UTC 2020
+17047: Tue Apr  7 17:13:49 UTC 2020
+17048: Tue Apr  7 17:13:49 UTC 2020
+17049: Tue Apr  7 17:13:49 UTC 2020
+17050: Tue Apr  7 17:13:49 UTC 2020
+17051: Tue Apr  7 17:13:49 UTC 2020
+17052: Tue Apr  7 17:13:49 UTC 2020
+17053: Tue Apr  7 17:13:49 UTC 2020
+17054: Tue Apr  7 17:13:49 UTC 2020
+17055: Tue Apr  7 17:13:49 UTC 2020
+17056: Tue Apr  7 17:13:49 UTC 2020
+17057: Tue Apr  7 17:13:49 UTC 2020
+17058: Tue Apr  7 17:13:49 UTC 2020
+17059: Tue Apr  7 17:13:49 UTC 2020
+cloud_user@ip-10-0-1-101:~$
+
+
+
+Create the fluentd container and mount the shared volume, the config file, and the output directory to it.
+
+cloud_user@ip-10-0-1-101:~$ docker run --name fluentd -d --mount type=volume,source=test-data,destination=/var/log/input --mount type=bind,source=/etc/fluentd/fluent.conf,destination=/fluentd/etc/fluent.conf --mount type=bind,source=/etc/fluentd/output,destination=/var/log/output --env FLUENTD_ARGS="-c /fluentd/etc/fluent.conf" k8s.gcr.io/fluentd-gcp:1.30
+Unable to find image 'k8s.gcr.io/fluentd-gcp:1.30' locally
+1.30: Pulling from fluentd-gcp
+169bb74c2cc6: Pull complete
+a3ed95caeb02: Pull complete
+c26ade95f65d: Pull complete
+fcd86db91bc2: Pull complete
+246c5ca21b8c: Pull complete
+Digest: sha256:504f67ce50c926f15c0d4a7a68ac0266e998cbe194b81e82a3637fee439fb168
+Status: Downloaded newer image for k8s.gcr.io/fluentd-gcp:1.30
+dab7fc8ed9393c6a3fa0bb49c56b19f05cefa9e521cb047d11f7a5df88720ad7
+
+
+Validate 
+
+cloud_user@ip-10-0-1-101:~$ ls /etc/fluentd/
+fluent.conf  output/
+cloud_user@ip-10-0-1-101:~$ ls /etc/fluentd/output/
+count.20200407180244_0.log  count.20200407180248_0.log  count.20200407180252.q5a2b7313a0a45c5a  count.20200407180256.b5a2b73177225fa1a
+count.20200407180245_0.log  count.20200407180249_0.log  count.20200407180253.q5a2b73149502ae35  count.20200407180257.b5a2b73186686ea5c
+count.20200407180246_0.log  count.20200407180250_0.log  count.20200407180254.q5a2b73158965ba7e
+count.20200407180247_0.log  count.20200407180251_0.log  count.20200407180255.q5a2b73167dc48e9e
+cloud_user@ip-10-0-1-101:~$ ### validation looks good
+cloud_user@ip-10-0-1-101:~$ logout
+Connection to 54.234.222.134 closed.

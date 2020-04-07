@@ -1,0 +1,63 @@
+Using Storage Volumes with Docker Swarm
+
+On the ""storage server"", create the storage directory.
+
+cloud_user@ip-10-0-1-103:~$ sudo mkdir -p /etc/docker/storage
+[sudo] password for cloud_user:
+cloud_user@ip-10-0-1-103:~$ sudo chown cloud_user:cloud_user /etc/docker/storage
+cloud_user@ip-10-0-1-103:~$ cp nginx.conf
+.bash_history              .bashrc                    .gnupg/                    .ssh/                      .viminfo
+.bash_logout               .cache/                    .profile                   .sudo_as_admin_successful  nginx.conf
+
+
+
+
+
+Copy the nginx configuration file into the storage directory.
+cloud_user@ip-10-0-1-103:~$ cp nginx.conf /etc/docker/storage/
+
+
+Install the vieux/sshfs plugin on the "swarm manager" and worker node.
+cloud_user@ip-10-0-1-101:~$ docker plugin install --grant-all-permissions vieux/sshfs
+latest: Pulling from vieux/sshfs
+52d435ada6a4: Download complete
+Digest: sha256:1d3c3e42c12138da5ef7873b97f7f32cf99fb6edde75fa4f0bcf9ed277855811
+Status: Downloaded newer image for vieux/sshfs:latest
+Installed plugin vieux/sshfs
+cloud_user@ip-10-0-1-101:~$
+
+
+###### Create the nginx-web service.
+Create the container. Be sure to replace <cloud_user password> with the actual password.
+cloud_user@ip-10-0-1-101:~$ docker service create -d --replicas 3 \
+> --name nginx-web -p 8080:9773 \
+> --mount volume-driver=vieux/sshfs,source=nginx-config-vol,target=/etc/nginx/,volume-opt=sshcmd=cloud_user@10.0.1.103:/etc/docker/storage,volume-opt=password=tWIVKLxPoQ nginx:latest
+1l3zwtucthwqcc62f83wrxoq2
+
+Verify that the service is working properly.
+cloud_user@ip-10-0-1-101:~$ curl localhost:8080
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
