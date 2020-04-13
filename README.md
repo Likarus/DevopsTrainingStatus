@@ -62,3 +62,5 @@ Quetzalcoatl Garcia | 51488 | 04/03/20  | Leoni Suganya| -Building Docker Images
 Quetzalcoatl Garcia | 51488 | 04/07/20  | Leoni Suganya| -Working with Docker Containers |   |  |
 Quetzalcoatl Garcia | 51488 | 04/07/20  | Leoni Suganya| -Docker registry and Troubleshooting |   |  |
 
+completed
+
