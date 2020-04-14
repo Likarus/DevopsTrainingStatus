@@ -1,0 +1,78 @@
+Install Ansible on an Azure Linux virtual machine
+https://docs.microsoft.com/en-us/azure/ansible/ansible-install-configure?toc=%2Fazure%2Fansible%2Ftoc.json&bc=%2Fazure%2Fbread%2Ftoc.json#install-ansible-on-an-azure-linux-virtual-machine
+
+this instructions  for configurate/install Ansible-azure on linux Ubuntu machine, taken from Microsoft instructions
+
+Ubuntu
+
+1- Open a terminal window.
+
+2- Enter the following command to install the required packages for the Azure Python SDK modules:
+	$ sudo apt-get update && sudo apt-get install -y libssl-dev libffi-dev python-dev python-pip
+
+3- Enter the following command to install the required packages Ansible:
+	$ sudo pip install ansible[azure]
+	
+Create Azure credentials
+1- For a development environment, create a file named credentials on the host virtual machine:
+	$ mkdir ~/.azure
+	$ vi ~/.azure/credentials
+	
+2- Insert the following lines into the file. Replace the placeholders with the service principal values.
+	[default]
+	subscription_id=<your-subscription_id>
+	client_id=<security-principal-appid>
+	secret=<security-principal-password>
+	tenant=<security-principal-tenant>
+	
+3) Save and close the file.
+
+Verify the configuration
+1- In Cloud Shell, create a file named rg.yml.
+	$vi code rg.yml
+
+2- Paste the following code into the editor:
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Create resource group
+      azure_rm_resourcegroup:
+        name: ansible-rg
+        location: eastus
+      register: rg
+    - debug:
+        var: rg
+
+3- sabve and close
+
+4- test, Run the playbook using the ansible-playbook command:
+$ ansible-playbook rg.yml
+
+PLAY [localhost] *********************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************
+ok: [localhost]
+
+TASK [Create resource group] *********************************************************************
+changed: [localhost]
+
+TASK [debug] *************************************************************************************
+ok: [localhost] => {
+    "rg": {
+        "changed": true,
+        "contains_resources": false,
+        "failed": false,
+        "state": {
+            "id": "/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/ansible-rg",
+            "location": "eastus",
+            "name": "ansible-rg",
+            "provisioning_state": "Succeeded",
+            "tags": null
+        }
+    }
+}
+
+PLAY RECAP ***************************************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0
+

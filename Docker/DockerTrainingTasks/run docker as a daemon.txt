@@ -1,0 +1,104 @@
+Docker Task
+run docker as a daemon
+
+##
+This tasks is run a docker image as a Daemon
+
+
+## validate server for practice
+quetza@master:~$
+quetza@master:~$ cat /etc/os-release
+NAME="Ubuntu"
+VERSION="18.04.4 LTS (Bionic Beaver)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 18.04.4 LTS"
+VERSION_ID="18.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=bionic
+UBUNTU_CODENAME=bionic
+
+
+######validate Docker Version installed
+quetza@master:~$ docker --version
+Docker version 18.09.5, build e8ff056
+
+#####Running docker container as a daemon process
+quetza@master:~$ 
+quetza@master:~$ docker run --name centos-linux -d centos /bin/sh -c "while true; do ping 8.8.8.8; done"
+Unable to find image 'centos:latest' locally
+latest: Pulling from library/centos
+8a29a15cefae: Pull complete
+Digest: sha256:fe8d824220415eed5477b63addf40fb06c3b049404242b31982106ac204f6700
+Status: Downloaded newer image for centos:latest
+d1f5f02aaf797f3e2d80331a414ba9e1ffa4020fd9e3e0e090e7a755f53210af
+quetza@master:~$
+
+##### Validate docker status
+quetza@master:~$ ### Validate docker status
+quetza@master:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
+d1f5f02aaf79        centos              "/bin/sh -c 'while t…"   About a minute ago   Up 33 seconds                           centos-linux
+
+
+###### Validate logs from image 
+quetza@master:~$ docker logs d1f5f02aaf79
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=81 ttl=55 time=2213 ms
+64 bytes from 8.8.8.8: icmp_seq=82 ttl=55 time=1189 ms
+64 bytes from 8.8.8.8: icmp_seq=83 ttl=55 time=171 ms
+64 bytes from 8.8.8.8: icmp_seq=84 ttl=55 time=34.8 ms
+64 bytes from 8.8.8.8: icmp_seq=85 ttl=55 time=24.10 ms
+64 bytes from 8.8.8.8: icmp_seq=86 ttl=55 time=36.6 ms
+64 bytes from 8.8.8.8: icmp_seq=87 ttl=55 time=28.2 ms
+64 bytes from 8.8.8.8: icmp_seq=88 ttl=55 time=21.4 ms
+64 bytes from 8.8.8.8: icmp_seq=89 ttl=55 time=22.7 ms
+64 bytes from 8.8.8.8: icmp_seq=90 ttl=55 time=22.10 ms
+64 bytes from 8.8.8.8: icmp_seq=91 ttl=55 time=55.10 ms
+64 bytes from 8.8.8.8: icmp_seq=92 ttl=55 time=24.9 ms
+64 bytes from 8.8.8.8: icmp_seq=93 ttl=55 time=30.4 ms
+64 bytes from 8.8.8.8: icmp_seq=94 ttl=55 time=24.1 ms
+64 bytes from 8.8.8.8: icmp_seq=95 ttl=55 time=25.9 ms
+
+#####reatach to running image
+quetza@master:~$ docker exec -it centos-linux /bin/bash
+[root@d1f5f02aaf79 /]# uname -a
+Linux d1f5f02aaf79 5.3.0-45-generic #37~18.04.1-Ubuntu SMP Fri Mar 27 15:58:10 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+[root@d1f5f02aaf79 /]# ip a s
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+5: eth0@if6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+[root@d1f5f02aaf79 /]# exit
+
+
+##### Validating process without log to docker image
+quetza@master:~$ docker exec -it centos-linux ip add show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+5: eth0@if6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+quetza@master:~$
+quetza@master:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+d1f5f02aaf79        centos              "/bin/sh -c 'while t…"   4 minutes ago       Up 3 minutes                            centos-linux
+
+##### Stop running container
+quetza@master:~$ docker stop d1f5f02aaf79
+d1f5f02aaf79
+
+quetza@master:~$
+quetza@master:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+quetza@master:~$

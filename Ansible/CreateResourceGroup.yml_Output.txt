@@ -1,0 +1,40 @@
+quetza@ubuntu:~/ansible$ ansible-playbook CreateResourceGroup.yml
+ [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+
+PLAY [localhost] *******************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Create resource group] *******************************************************************************************************************************************
+changed: [localhost]
+
+TASK [debug] ***********************************************************************************************************************************************************
+ok: [localhost] => {
+    "rg": {
+        "changed": true,
+        "contains_resources": false,
+        "failed": false,
+        "state": {
+            "id": "/subscriptions/18cf3d20-a379-4c53-9f11-861dac5c9b88/resourceGroups/ansiblenewRG",
+            "location": "eastus",
+            "name": "ansiblenewRG",
+            "provisioning_state": "Succeeded",
+            "tags": null
+        }
+    }
+}
+
+PLAY RECAP *************************************************************************************************************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0
+
+
+Azure Cloud Shell validation
+PS /home/quetzalcoatl> Get-AzResourceGroup -Name 'ansiblenewRG'
+
+ResourceGroupName : ansiblenewRG
+Location          : eastus
+ProvisioningState : Succeeded
+Tags              :
+ResourceId        : /subscriptions/18cf3d20-a379-4c53-9f11-861dac5c9b88/resourceGroups/ansiblenewRG

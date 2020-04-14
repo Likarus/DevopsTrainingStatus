@@ -1,0 +1,124 @@
+Deploying a Service on an Overlay Network
+
+Description
+Bridge networks are a powerful tool for controlling communication between containers on a single host, 
+but what if you need to provide isolated networking between containers in Docker Swarm? With Docker Swarm, 
+you can use custom overlay networks to allow groups of containers to communicate transparently, even if they are running on different swarm nodes.
+
+You will set up a custom overlay network and deploy three different services that communicate with each other using this network.
+
+Additional Information and Resources
+Your fruit stand company has some software that calculates and serves a list of products and their prices, taking into account items that are on sale and how the sales affect the total price. This software consists of three components: a base-price component which serves the base prices of fruits sold by the fruit stand, a sales component which provides a list of items that are on sale and how much each item is discounted, and a total-price component which communicates with the other two and calculates the final price for each item.
+
+These components have been running on a single Docker host, but as your business is expanding, it is time to upgrade to a swarm cluster for greater flexibility. Run these three application components as services in your swarm cluster, and provide them with a custom overlay network to facilitate isolated communication between them.
+
+Configure these application components on the Swarm cluster so that the following specifications are met:
+
+Create an overlay network called prices-overlay-net.
+Create a service called base-price with 3 replicas using the linuxacademycontent/prices-base-price:1 image. Configure the service to use the prices-overlay-net network.
+Create a service called sales with 3 replicas using the linuxacademycontent/prices-sales:1 image. Configure the service to use the prices-overlay-net network.
+Create a service called total-price with 2 replicas using the linuxacademycontent/prices-total-price:1 image. Configure the service to use the prices-overlay-net network. Expose this service's port 80 on port 8080.
+If everything is set up correctly, you should be able to access the total prices list with curl localhost:8080.
+
+If you get stuck, feel free to check out the solution video, or the detailed instructions under each objective. Good luck!
+
+Learning Objectives
+
+------------------------------------------------------------------------------------------
+### Create the overlay network.
+Create the prices-overlay-net overlay network.
+ docker network create --driver overlay prices-overlay-net
+
+### Create the base-price service.
+cloud_user@ip-10-0-1-101:~$ docker service create --name base-price --network prices-overl                                                                             ay-net --replicas 3 linuxacademycontent/prices-base-price:1
+pmomi7wxuvo13z3hsrdov4q7b
+overall progress: 3 out of 3 tasks
+1/3: running
+2/3: running
+3/3: running
+verify: Service converged
+
+
+### Create the sales service.
+docker service create --name sales --network prices-overlay-ne                                                                             t --replicas 3 linuxacademycontent/prices-sales:1
+564qsasenplm73hb31k3qzcu7
+overall progress: 3 out of 3 tasks
+1/3: running
+2/3: running
+3/3: running
+verify: Service converged
+
+
+### Create the total-price service.
+cloud_user@ip-10-0-1-101:~$ docker service create --name sales --network prices-overlay-ne                                                                             t --replicas 3 linuxacademycontent/prices-sales:1
+564qsasenplm73hb31k3qzcu7
+overall progress: 3 out of 3 tasks
+1/3: running
+2/3: running
+3/3: running
+verify: Service converged
+
+docker service create --name total-price --network prices-overlay-net --replicas 2 -p 8080:80 linuxacademycontent/prices-total-price:1
+cloud_user@ip-10-0-1-101:~$ docker service create --name total-price --network prices-over                                                                             lay-net --replicas 2 -p 8080:80 linuxacademycontent/prices-total-price:1
+ysmzpn0eefe4m7k0x6fd23s9g
+overall progress: 2 out of 2 tasks
+1/2: running
+2/2: running
+verify: Service converged
+
+### Validation
+cloud_user@ip-10-0-1-101:~$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                                                                                                                   PORTS
+pmomi7wxuvo1        base-price          replicated          3/3                 linuxacade                                                                             mycontent/prices-base-price:1
+q9xgbvvdfiop        base-proce          replicated          0/3                 linuxacade                                                                             mycontent/proces-base-price:1
+564qsasenplm        sales               replicated          3/3                 linuxacade                                                                             mycontent/prices-sales:1
+ysmzpn0eefe4        total-price         replicated          2/2                 linuxacade                                                                             mycontent/prices-total-price:1   *:8080->80/tcp
+cloud_user@ip-10-0-1-101:~$ curl localhost:8080
+{
+    "description": "A list of total prices, including discounts.",
+    "products": [
+        {
+            "name": "apple",
+            "price": "0.98"
+        },
+        {
+            "name": "banana",
+            "price": "1.00"
+        },
+        {
+            "name": "blueberry",
+            "price": "3.99"
+        },
+        {
+            "name": "coconut",
+            "price": "4.99"
+        },
+        {
+            "name": "cranberry",
+            "price": "2.09"
+        },
+        {
+            "name": "cucumber",
+            "price": "0.50"
+        },
+        {
+            "name": "currant",
+            "price": "2.00"
+        },
+        {
+            "name": "olive",
+            "price": "2.50"
+        },
+        {
+            "name": "orange",
+            "price": "1.31"
+        },
+        {
+            "name": "pamelo",
+            "price": "3.00"
+        },
+        {
+            "name": "papaya",
+            "price": "4.75"
+        }
+    ]

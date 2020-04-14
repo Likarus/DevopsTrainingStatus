@@ -1,0 +1,145 @@
+ creating Docker Image 
+
+### Create Image from Nginx and test 
+
+
+cloud_user@ip-10-0-1-101:~/fruit-list$ pwd
+/home/cloud_user/fruit-list
+
+cloud_user@ip-10-0-1-101:~/fruit-list$ ll
+total 16
+drwxr-xr-x 3 cloud_user cloud_user 4096 Apr  3 21:10 ./
+drwxr-xr-x 6 cloud_user cloud_user 4096 Apr  3 22:40 ../
+-rw-r--r-- 1 cloud_user cloud_user  145 Apr  3 21:10 nginx.conf
+drwxr-xr-x 2 cloud_user cloud_user 4096 Apr  3 21:10 static/
+
+### Creating Docker file
+cloud_user@ip-10-0-1-101:~/fruit-list$ vi Dockerfile
+cloud_user@ip-10-0-1-101:~/fruit-list$
+
+##validating Docker file
+cloud_user@ip-10-0-1-101:~/fruit-list$ cat Dockerfile
+FROM nginx:1.15.8
+
+ADD static/fruit.json /usr/share/nginx/html/fruit.json
+ADD nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+
+### building nginx image 
+cloud_user@ip-10-0-1-101:~/fruit-list$ docker build -t fruit-list:1.0.0 .
+Sending build context to Docker daemon  5.632kB
+Step 1/5 : FROM nginx:1.15.8
+ ---> f09fe80eb0e7
+Step 2/5 : ADD static/fruit.json /usr/share/nginx/html/fruit.json
+ ---> Using cache
+ ---> 4c4d77121f23
+Step 3/5 : ADD nginx.conf /etc/nginx/nginx.conf
+ ---> Using cache
+ ---> d59591b9fefe
+Step 4/5 : EXPOSE 80
+ ---> Using cache
+ ---> 1a7b264e84bd
+Step 5/5 : CMD [ "nginx", "-g", "daemon off;"]
+ ---> Running in ed977f4df0b6
+Removing intermediate container ed977f4df0b6
+ ---> fd99c2f56ec1
+Successfully built fd99c2f56ec1
+Successfully tagged fruit-list:1.0.0
+
+
+### Run a container with the image in detached mode and verify that it works.
+cloud_user@ip-10-0-1-101:~/fruit-list$ docker run --name fruit-list -d -p 8080:80 fruit-list:1.0.0
+5cb4e5b0e472cdc38263a5d627ab50c90736f2164a62fbb016f7f644f92e29e8
+
+### Make a request to the container and verify that you get some JSON with a list of fruits
+cloud_user@ip-10-0-1-101:~/fruit-list$ curl localhost:8080
+{
+  "description": "A list of fruits.",
+  "fruits": [
+    "apple",
+    "apricot",
+    "avocado",
+    "banana",
+    "bell pepper",
+    "bilberry",
+    "blackberry",
+    "blackcurrant",
+    "blood orange",
+    "blueberry",
+    "boysenberry",
+    "breadfruit",
+    "canary melon",
+    "cantaloupe",
+    "cherimoya",
+    "cherry",
+    "chili pepper",
+    "clementine",
+    "cloudberry",
+    "coconut",
+    "cranberry",
+    "cucumber",
+    "currant",
+    "damson",
+    "date",
+    "dragonfruit",
+    "durian",
+    "eggplant",
+    "elderberry",
+    "feijoa",
+    "fig",
+    "goji berry",
+    "gooseberry",
+    "grape",
+    "grapefruit",
+    "guava",
+    "honeydew",
+    "huckleberry",
+    "jackfruit",
+    "jambul",
+    "jujube",
+    "kiwi fruit",
+    "kumquat",
+    "lemon",
+    "lime",
+    "loquat",
+    "lychee",
+    "mandarine",
+    "mango",
+    "mulberry",
+    "nectarine",
+    "nut",
+    "olive",
+    "orange",
+    "pamelo",
+    "papaya",
+    "passionfruit",
+    "peach",
+    "pear",
+    "persimmon",
+    "physalis",
+    "pineapple",
+    "plum",
+    "pomegranate",
+    "pomelo",
+    "purple mangosteen",
+    "quince",
+    "raisin",
+    "rambutan",
+    "raspberry",
+    "redcurrant",
+    "rock melon",
+    "salal berry",
+    "satsuma",
+    "star fruit",
+    "strawberry",
+    "tamarillo",
+    "tangerine",
+    "tomato",
+    "ugli fruit",
+    "watermelon"
+  ]
+}
+cloud_user@ip-10-0-1-101:~/fruit-list$

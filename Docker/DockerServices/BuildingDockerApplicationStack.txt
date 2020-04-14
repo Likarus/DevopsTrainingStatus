@@ -1,0 +1,125 @@
+Building a Docker Application Stack
+
+Excercvise
+Fruit Service
+Provides a list of fruits sold in the company's stores.
+You can use the Docker image tag linuxacademycontent/fruit-service:1.0.1 to run this service.
+Listens on port 80.
+The service should be named fruit inside the stack.
+Vegetable Service
+Provides a list of vegetables sold in the company's stores.
+You can use the Docker image tag linuxacademycontent/vegetable-service:1.0.0 to run this service.
+Listens on port 80.
+The service should be named vegetables inside the stack.
+All Products Service
+Queries the other two services, combining their data into a single list of all produce.
+You can use the Docker image tag linuxacademycontent/all-products:1.0.0 to run this service.
+Listens on port 80.
+Use the environment variables FRUIT_HOST and FRUIT_PORT to set the host and port which will be used to query the fruit service.
+Use the environment variables VEGETABLE_HOST and VEGETABLE_PORT to set the host and port which will be used to query the vegetable service.
+
+
+
+
+Build and deploy the application stack.
+
+#####Create an empty project directory with a Docker compose YAML file inside.
+
+cd ~/
+mkdir produce
+cd produce
+vi produce.yml
+Build a stack definition in produce.yml to meet the provided specifications.
+----------------------------------------------------------------------------------
+version: '3'
+services:
+  fruit:
+    image: linuxacademycontent/fruit-service:1.0.1
+  vegetables:
+    image: linuxacademycontent/vegetable-service:1.0.0
+  all_products:
+    image: linuxacademycontent/all-products:1.0.0
+    ports:
+    - "8080:80"
+    environment:
+    - FRUIT_HOST=fruit
+    - FRUIT_PORT=80
+    - VEGETABLE_HOST=vegetables
+    - VEGETABLE_PORT=80
+-------------------------------------------------------------------------
+
+##### Deploy the stack using the compose file.
+
+cloud_user@ip-10-0-1-101:~/produce$ docker stack deploy -c produce.yml produce
+Creating network produce_default
+Creating service produce_fruit
+Creating service produce_vegetables
+Creating service produce_all_products
+
+cloud_user@ip-10-0-1-101:~/produce$ docker stack ps produce
+ID                  NAME                     IMAGE                                         NODE                DESIRED STATE       CURRENT STATE                ERROR               PORTS
+ayp7hckavozu        produce_all_products.1   linuxacademycontent/all-products:1.0.0        ip-10-0-1-102       Running             Running about a minute ago
+3409ix30r694        produce_vegetables.1     linuxacademycontent/vegetable-service:1.0.0   ip-10-0-1-103       Running             Running 2 minutes ago
+qyrs4vdafgo7        produce_fruit.1          linuxacademycontent/fruit-service:1.0.1       ip-10-0-1-101       Running             Running 2 minutes ago
+
+
+
+###### Verify that the stack is working.
+
+cloud_user@ip-10-0-1-101:~/produce$ curl localhost:8080
+{"description":"A list of all produce.","products":["acorn squash","alfalfa sprout","amaranth","anise","apple","apricot","artichoke","arugula","asparagus","aubergine","avocado","azuki bean","banana","banana squash","basil","bean sprout","beet","bell pepper","bilberry","black bean","black-eyed pea","blackberry","blackcurrant","blood orange","blueberry","bok choy","borlotti bean","boysenberry","breadfruit","broad beans","broccoflower","broccoli","brussels sprout","butternut squash","cabbage","calabrese","canary melon","cantaloupe","caraway","carrot","cauliflower","cayenne pepper","celeriac","celery","chamomile","chard","chayote","cherimoya","cherry","chickpea","chili pepper","chives","cilantro","clementine","cloudberry","coconut","collard green","corn","corn salad","courgette","cranberry","cucumber","cucumber","currant","daikon","damson","date","delicata","dill","dragonfruit","durian","eggplant","eggplant","elderberry","endive","feijoa","fennel","fiddlehead","fig","frisee","garlic","gem squash","ginger","goji berry","gooseberry","grape","grapefruit","green bean","green pepper","guava","habanero","herbs and spice","honeydew","horseradish","hubbard squash","huckleberry","jackfruit","jalapeno","jambul","jerusalem artichoke","jicama","jujube","kale","kidney bean","kiwi fruit","kohlrabi","kumquat","lavender","leek ","legume","lemon","lemon grass","lentils","lettuce","lima bean","lime","loquat","lychee","mamey","mandarine","mangetout","mango","marjoram","mulberry","mung bean","mushroom","mustard green","navy bean","nectarine","new zealand spinach","nopale","nut","okra","olive","onion","orange","oregano","pamelo","papaya","paprika","parsley","parsnip","passionfruit","patty pan","pea","peach","pear","persimmon","physalis","pineapple","pinto bean","plum","pomegranate","pomelo","potato","pumpkin","purple mangosteen","quince","radicchio","radish","raisin","rambutan","raspberry","redcurrant","rhubarb","rock melon","rosemary","runner bean","rutabaga","sage","salal berry","satsuma","scallion","shallot","skirret","snap pea","soy bean","spaghetti squash","spinach","squash ","star fruit","strawberry","sweet potato","tabasco pepper","tamarillo","tangerine","taro","tat soi","thyme","tomato","topinambur","tubers","turnip","ugli fruit","wasabi","water chestnut","watercress","watermelon","white radish","yam","zucchini"]}cloud_user@ip-10-0-1-101:~/produce$
+
+
+
+
+Scale the Fruit and Vegetable services in the stack.
+##### Set the number of replicas to 3 for the Fruit and Vegetable services in the compose file.
+
+vi produce.yml
+version: '3'
+services:
+  fruit:
+    image: linuxacademycontent/fruit-service:1.0.1
+    deploy:
+      replicas: 3
+  vegetables:
+    image: linuxacademycontent/vegetable-service:1.0.0
+    deploy:
+      replicas: 3
+  all_products:
+    image: linuxacademycontent/all-products:1.0.0
+    ports:
+    - "8080:80"
+    environment:
+    - FRUIT_HOST=fruit
+    - FRUIT_PORT=80
+    - VEGETABLE_HOST=vegetables
+    - VEGETABLE_PORT=80
+
+
+##### Redeploy the stack using the compose file.
+
+cloud_user@ip-10-0-1-101:~/produce$ docker stack deploy -c produc                                                                             e.yml produce
+Updating service produce_all_products (id: o48fop3xg2wxsq33hgpien                                                                             ogo)
+Updating service produce_fruit (id: v1z7fvprir820emdcjm4pp093)
+Updating service produce_vegetables (id: sff9ryfhr3stopucgyhgys2a                                                                             v)
+cloud_user@ip-10-0-1-101:~/produce$
+
+cloud_user@ip-10-0-1-101:~/produce$ docker stack ps produce
+ID                  NAME                     IMAGE                                         NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS
+ayp7hckavozu        produce_all_products.1   linuxacademycontent/all-products:1.0.0        ip-10-0-1-102       Running             Running 6 minutes ago
+3409ix30r694        produce_vegetables.1     linuxacademycontent/vegetable-service:1.0.0   ip-10-0-1-103       Running             Running 6 minutes ago
+qyrs4vdafgo7        produce_fruit.1          linuxacademycontent/fruit-service:1.0.1       ip-10-0-1-101       Running             Running 6 minutes ago
+od8pw12xfkaq        produce_vegetables.2     linuxacademycontent/vegetable-service:1.0.0   ip-10-0-1-101       Running             Running 6 seconds ago
+n9n2ftpbcp82        produce_fruit.2          linuxacademycontent/fruit-service:1.0.1       ip-10-0-1-103       Running             Running 7 seconds ago
+3vdqae3ckv28        produce_vegetables.3     linuxacademycontent/vegetable-service:1.0.0   ip-10-0-1-102       Running             Running 2 seconds ago
+klfl7pnmzyz2        produce_fruit.3          linuxacademycontent/fruit-service:1.0.1       ip-10-0-1-102       Running             Running 2 seconds ago
+
+
+
+###### Verify that the stack is still working.
+
+cloud_user@ip-10-0-1-101:~/produce$ curl localhost:8080
+{"description":"A list of all produce.","products":["acorn squash","alfalfa sprout","amaranth","anise","apple","apricot","artichoke","arugula","asparagus","aubergine","avocado","azuki bean","banana","banana squash","basil","bean sprout","beet","bell pepper","bilberry","black bean","black-eyed pea","blackberry","blackcurrant","blood orange","blueberry","bok choy","borlotti bean","boysenberry","breadfruit","broad beans","broccoflower","broccoli","brussels sprout","butternut squash","cabbage","calabrese","canary melon","cantaloupe","caraway","carrot","cauliflower","cayenne pepper","celeriac","celery","chamomile","chard","chayote","cherimoya","cherry","chickpea","chili pepper","chives","cilantro","clementine","cloudberry","coconut","collard green","corn","corn salad","courgette","cranberry","cucumber","cucumber","currant","daikon","damson","date","delicata","dill","dragonfruit","durian","eggplant","eggplant","elderberry","endive","feijoa","fennel","fiddlehead","fig","frisee","garlic","gem squash","ginger","goji berry","gooseberry","grape","grapefruit","green bean","green pepper","guava","habanero","herbs and spice","honeydew","horseradish","hubbard squash","huckleberry","jackfruit","jalapeno","jambul","jerusalem artichoke","jicama","jujube","kale","kidney bean","kiwi fruit","kohlrabi","kumquat","lavender","leek ","legume","lemon","lemon grass","lentils","lettuce","lima bean","lime","loquat","lychee","mamey","mandarine","mangetout","mango","marjoram","mulberry","mung bean","mushroom","mustard green","navy bean","nectarine","new zealand spinach","nopale","nut","okra","olive","onion","orange","oregano","pamelo","papaya","paprika","parsley","parsnip","passionfruit","patty pan","pea","peach","pear","persimmon","physalis","pineapple","pinto bean","plum","pomegranate","pomelo","potato","pumpkin","purple mangosteen","quince","radicchio","radish","raisin","rambutan","raspberry","redcurrant","rhubarb","rock melon","rosemary","runner bean","rutabaga","sage","salal berry","satsuma","scallion","shallot","skirret","snap pea","soy bean","spaghetti squash","spinach","squash ","star fruit","strawberry","sweet potato","tabasco pepper","tamarillo","tangerine","taro","tat soi","thyme","tomato","topinambur","tubers","turnip","ugli fruit","wasabi","water chestnut","watercress","watermelon","white radish","yam","zucchini"]}cloud_user@ip-10-0-1-101:~/produce$
+
+
