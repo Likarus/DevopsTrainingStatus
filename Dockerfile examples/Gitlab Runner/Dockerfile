@@ -25,7 +25,7 @@ EXPOSE 7000-8000
 
 # Download Gitlab-runner binary
 RUN cd /usr/local/bin && \
-    wget curl -LJO https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-386 && \
+    wget https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-386 && \
     mv gitlab-runner-linux-386 gitlab-runner && \
     chmod +x gitlab-runner && \
     useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash && \
