@@ -4,27 +4,19 @@
 
 FROM centos:7 
 
-ARG CTMHOST
-
-# install basic packages
-RUN yum -y install wget && \
+# install  packages
+RUN yum -y install wget  
 RUN yum -y install openssl && \
     yum -y install wget && \
     yum -y install unzip && \
     yum -y install sudo && \
     yum -y install net-tools && \ 
     yum -y install which && \
-    yum -y install maven && \
-    yum -y install java-1.8.0-openjdk && \
-    cd /root && \
-    curl --silent --location https://rpm.nodesource.com/setup_6.x | bash - && \
-    yum -y install nodejs && \
-    node -v && \
-    npm -v && 
+    yum -y install maven && 
 #Set time zone 
 RUN echo "America/Mexico_City" > /etc/timezone
 
-# add antonio user and root to sudoers list
+# add controlm user and root to sudoers list
 RUN useradd -d /home/antonio -p antonio -m antonio \
     && echo 'root ALL=(ALL) ALL' >> /etc/sudoers \
     && echo 'controlm ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
