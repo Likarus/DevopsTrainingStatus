@@ -58,8 +58,8 @@ Ansible deplopyment for azure services using virtual machine on latop,
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
 -----|-------|------|--------------|-----------------|---------------|---------------------|
 Quetzalcoatl Garcia | 51488 | 04/02/20 | Leoni Suganya| -Docker Fundamentals>br/> -Components and Installation | no task assigned  | completed |
-Quetzalcoatl Garcia | 51488 | 04/03/20  | Leoni Suganya| -Building Docker Images |   |  |
-Quetzalcoatl Garcia | 51488 | 04/07/20  | Leoni Suganya| -Working with Docker Containers |   |  |
-Quetzalcoatl Garcia | 51488 | 04/07/20  | Leoni Suganya| -Docker registry and Troubleshooting |   |  |
+Quetzalcoatl Garcia | 51488 | 04/03/20  | Leoni Suganya| -Building Docker Images | completed  | Completed  |
+Quetzalcoatl Garcia | 51488 | 04/07/20  | Leoni Suganya| -Working with Docker Containers | Completed  |Completed  |
+Quetzalcoatl Garcia | 51488 | 04/14/20  | Leoni Suganya| -Docker registry and Troubleshooting | Completed |Completed  |
 
 
