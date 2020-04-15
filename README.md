@@ -69,4 +69,19 @@ Quetzalcoatl Garcia | 51488 | 04/03/20  | Leoni Suganya| -Building Docker Images
 Quetzalcoatl Garcia | 51488 | 04/07/20  | Leoni Suganya| -Working with Docker Containers | Completed  |Completed  |
 Quetzalcoatl Garcia | 51488 | 04/14/20  | Leoni Suganya| -Docker registry and Troubleshooting | Completed |Completed  |
 
+## Kubernetes ##
+[Linux Academy Cloud Native Certified Kubernetes Administrator (CKA)](https://linuxacademy.com/cp/modules/view/id/327)<br />
+[youtube](https://www.youtube.com/watch?v=4ht22ReBjno)<br />
+
+Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
+-----|-------|------|--------------|-----------------|---------------|---------------------|
+Quetzalcoatl Garcia | 51488 | 04/15/20  | Leoni Suganya| Kubernetes Fundamentals, Installation and Configuration | no task assigned  | completed |
+Quetzalcoatl Garcia | 51488 | 04/16/20  | Leoni Suganya| Kubernetes Objects|   |   |
+Quetzalcoatl Garcia | 51488 | 04/17/20  | Leoni Suganya| Kubernetes Workloads |   |  |
+Quetzalcoatl Garcia | 51488 | 04/20/20  | Leoni Suganya| Persistent Volumes |  |  |
+Quetzalcoatl Garcia | 51488 | 04/20/20  | Leoni Suganya| Security |  |  |
+Quetzalcoatl Garcia | 51488 | 04/20/20  | Leoni Suganya| Cluster Administration + Monitoring + Troubleshooting |  |  |
+Quetzalcoatl Garcia | 51488 | 04/20/20  | Leoni Suganya| Overview of Azure Kubernetes Service |  |  |
+
+
 
