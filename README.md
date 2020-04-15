@@ -1,6 +1,13 @@
 # DevopsTrainingStatus
 Weekly Reports for Hexaware´s Devops Training Feb 2020 Batch.
 
+### Devops Shadow sessions
+Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
+-----|-------|------|--------------|-----------------|---------------|---------------------|
+Quetzalcoatl Garcia	|51488	|March 24	|Sushant Kumar - Venkat	|Overview of Azure	|Task	|Completed |
+Quetzalcoatl Garcia	|51488	|March 25	|Sushant Kumar - Venkat	|Overview of Azure	|Task	|Completed |
+Quetzalcoatl Garcia	|51488	|March 27	|Sushant Kumar - Venkat	|Overview of Azure	|Task	|Completed |
+
 ## Azure Training ##
 Azure self learning are based on [Udemy azure course](https://eylearning.udemy.com/course/70533-azure/)
 Name | EmpId | Date | Trainer Name | Session Covered | Task Assigned | Completition Status |
